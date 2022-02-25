@@ -1,0 +1,19 @@
+version: '3.7'
+services:
+  rqda:
+    build:
+      context: rqda
+      dockerfile: Dockerfile
+    environment:
+      XAUTHORITY: ${XAUTH}
+      DISPLAY:
+    volumes:
+      - type: bind
+        source: './'
+        target: /home/dockerqda/
+      - type: bind
+        source: ${XAUTH}
+        target: ${XAUTH}
+      - type: bind
+        source: ${XSOCK}
+        target: ${XSOCK}

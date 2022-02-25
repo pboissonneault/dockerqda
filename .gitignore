@@ -33,3 +33,7 @@ vignettes/*.pdf
 *.knit.md
 
 *.org~
+*.md~
+
+.idea
+

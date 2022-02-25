@@ -19,26 +19,22 @@ This project find its roots in the fact that RQDA dependencies are not easily av
 
 This image proposes the last stable version of RQDA (0.2-8) running in Debian 8 (jessie) and R (3.1)
 
-I use this script to run the image : 
+Run this script : 
 
-    # Pulling the images
-    docker pull frdvnw/dockerqda
-    # Exec the script for running the container
-    chmod +x RunDockeRQDA.sh
-    ./RunDockeRQDA.sh
+```bash
+#Build the image 
+docker-compose build
 
-    #!/bin/bash
-    XSOCK=/tmp/.X11-unix
-    XAUTH=/tmp/.docker.xauth
-    xauth nlist $DISPLAY | sed -e 's/^..../ffff/' | xauth -f $XAUTH nmerge -
-    sudo docker run -it --volume=$XSOCK:$XSOCK:rw \
-         --volume=$XAUTH:$XAUTH:rw \
-         --env="XAUTHORITY=${XAUTH}" \
-         --env="DISPLAY" \
-         --name whirl_wheels \
-         --workdir=/root/ \
-         --volume=/WHERE/YOU/WANT/IN/YOUR/COMPUTER/dockerqda/:/home/dockerqda/ \
-         frdvnw/dockerqda:latest
+#Run 
+docker-compose up -d
+
+#First use : 
+docker exec -it "${PWD##*/}_rqda_1" R CMD INSTALL --no-test-load $HOME/gWidgetsRGtk2_0.0-86.1.tar.gz && R CMD INSTALL --no-test-load $HOME/RQDA_0.2-8.tar.gz
+
+#Then  
+docker exec -it "${PWD##*/}_rqda_1" R
+#Start the app in R : library(RQDA)
+```
 
 
 # Credits & More info
