@@ -19,7 +19,7 @@ This project find its roots in the fact that RQDA dependencies are not easily av
 
 This image proposes the last stable version of RQDA (0.2-8) running in Debian 8 (jessie) and R (3.1)
 
-Run this script : 
+Run these commands : 
 
 ```bash
 #Build the image 
