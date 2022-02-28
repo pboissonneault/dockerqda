@@ -22,6 +22,12 @@ This image proposes the last stable version of RQDA (0.2-8) running in Debian 8 
 Run these commands : 
 
 ```bash
+set -o allexport
+source .env
+set +o allexport
+touch $XAUTH
+xauth nlist $DISPLAY | sed -e 's/^..../ffff/' | xauth -f $XAUTH nmerge -
+
 #Build the image 
 docker-compose build
 
@@ -29,7 +35,8 @@ docker-compose build
 docker-compose up -d
 
 #First use : 
-docker exec -it "${PWD##*/}_rqda_1" R CMD INSTALL --no-test-load $HOME/gWidgetsRGtk2_0.0-86.1.tar.gz && R CMD INSTALL --no-test-load $HOME/RQDA_0.2-8.tar.gz
+docker exec -it "${PWD##*/}_rqda_1" R CMD INSTALL --no-test-load $HOME/gWidgetsRGtk2_0.0-86.1.tar.gz
+docker exec -it "${PWD##*/}_rqda_1" R CMD INSTALL --no-test-load $HOME/RQDA_0.2-8.tar.gz
 
 #Then  
 docker exec -it "${PWD##*/}_rqda_1" R
