@@ -35,8 +35,8 @@ docker-compose build
 docker-compose up -d
 
 #First use : 
-docker exec -it "${PWD##*/}_rqda_1" R CMD INSTALL --no-test-load $HOME/gWidgetsRGtk2_0.0-86.1.tar.gz
-docker exec -it "${PWD##*/}_rqda_1" R CMD INSTALL --no-test-load $HOME/RQDA_0.2-8.tar.gz
+docker exec -it "${PWD##*/}_rqda_1" R CMD INSTALL --no-test-load /root/gWidgetsRGtk2_0.0-86.1.tar.gz
+docker exec -it "${PWD##*/}_rqda_1" R CMD INSTALL --no-test-load /root/RQDA_0.2-8.tar.gz
 
 #Then  
 docker exec -it "${PWD##*/}_rqda_1" R
@@ -63,8 +63,8 @@ docker-compose -f docker-compose-mac.yml build
 docker-compose -f docker-compose-mac.yml up -d
 
 #First use : 
-docker exec -it "${PWD##*/}-rqda-1" R CMD INSTALL --no-test-load $HOME/gWidgetsRGtk2_0.0-86.1.tar.gz
-docker exec -it "${PWD##*/}-rqda-1" R CMD INSTALL --no-test-load $HOME/RQDA_0.2-8.tar.gz
+docker exec -it "${PWD##*/}-rqda-1" R CMD INSTALL --no-test-load /root/gWidgetsRGtk2_0.0-86.1.tar.gz
+docker exec -it "${PWD##*/}-rqda-1" R CMD INSTALL --no-test-load /root/RQDA_0.2-8.tar.gz
 
 #Then  
 docker exec -it "${PWD##*/}-rqda-1" R
