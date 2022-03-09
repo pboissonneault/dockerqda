@@ -1,9 +1,6 @@
 # based on debian 8 (2014)
 FROM debian:jessie-slim
 
-# provide information about the maintainer of the image
-MAINTAINER Frédéric M. Vanwindekens (f.vanwindekens@cra.wallonie.be)
-
 WORKDIR /work/
 
 # Setting up
@@ -35,7 +32,9 @@ RUN apt-get install -qqy r-base \
     && R CMD INSTALL $HOME/igraph_0.6.tar.gz \
     && rm -rf /tmp/downloaded_packages/ /tmp/*.rds \
     && rm -rf /var/lib/apt/lists/*
-    
+
+WORKDIR /home/dockerqda/
+
 COPY ./entrypoint.sh /
 RUN chmod a+x /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
