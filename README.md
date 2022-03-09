@@ -19,7 +19,7 @@ This project find its roots in the fact that RQDA dependencies are not easily av
 
 This image proposes the last stable version of RQDA (0.2-8) running in Debian 8 (jessie) and R (3.1)
 
-Run these commands : 
+## Ubuntu (X11)
 
 ```bash
 set -o allexport
@@ -40,6 +40,34 @@ docker exec -it "${PWD##*/}_rqda_1" R CMD INSTALL --no-test-load $HOME/RQDA_0.2-
 
 #Then  
 docker exec -it "${PWD##*/}_rqda_1" R
+#Start the app in R : library(RQDA)
+```
+
+## MacOS (XQuartz)
+
+Télécharger et installer XQuartz (https://www.xquartz.org/)
+
+```bash
+set -o allexport
+source .env
+set +o allexport
+touch $XAUTH
+touch $XSOCK
+sudo ifconfig lo0 alias 1.1.1.1
+xhost + 1.1.1.1
+
+#Build the image 
+docker-compose -f docker-compose-mac.yml build
+
+#Run 
+docker-compose -f docker-compose-mac.yml up -d
+
+#First use : 
+docker exec -it "${PWD##*/}-rqda-1" R CMD INSTALL --no-test-load $HOME/gWidgetsRGtk2_0.0-86.1.tar.gz
+docker exec -it "${PWD##*/}-rqda-1" R CMD INSTALL --no-test-load $HOME/RQDA_0.2-8.tar.gz
+
+#Then  
+docker exec -it "${PWD##*/}-rqda-1" R
 #Start the app in R : library(RQDA)
 ```
 
