@@ -47,6 +47,9 @@ docker exec -it "${PWD##*/}_rqda_1" R
 
 Télécharger et installer XQuartz (https://www.xquartz.org/)
 
+S'assurer d'activer la fonctionnalité 
+XQuartz > Préférences > Sécurité > [x] Autoriser les connexions de clients réseau
+
 ```bash
 set -o allexport
 source .env
